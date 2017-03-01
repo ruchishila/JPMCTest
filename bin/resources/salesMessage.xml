@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sales-message xmlns="https://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/salesMassage-Schema-v1 salesMassage-Schema-v1.xsd ">
+
+	<message-data>
+		<sale>
+			<item-Name>Apple</item-Name>
+			<item-rate>20</item-rate>
+			<number-of-item>2</number-of-item>
+		</sale>
+	</message-data>
+</sales-message>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/Sales-Massage-Schema v1"
+	xmlns:tns="http://www.example.org/Sales-Massage-Schema v1"
+	elementFormDefault="qualified">
+	<xsd:element name="sales-message">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="sale">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="item-name" type="xsd:string" />
+							<xsd:element name="item-rate" type="xsd:integer" />
+							<xsd:element name="number-of-item" minOccurs="0"
+								type="xsd:integer" />
+							<xsd:element name="adjustment-type" minOccurs="0"
+								type="xsd:string" />
+							<xsd:element name="adjustment-amount" minOccurs="0"
+								type="xsd:integer" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+
+
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
