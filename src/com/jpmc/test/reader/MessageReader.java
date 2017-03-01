@@ -19,6 +19,7 @@ import com.jpmc.test.dto.SaleData;
 public class MessageReader {
 	/**
 	 * This method parse the xml messages
+	 * 
 	 * @param message
 	 * @return
 	 */
@@ -110,8 +111,8 @@ public class MessageReader {
 				}
 
 			}
-            sd.setTotalValue((itemRate)*noItem);
-			System.out.println("Total value of this sale is rate*numberOfItem "+sd.getTotalValue());
+			sd.setTotalValue((itemRate) * noItem);
+			System.out.println("Total value of this sale is rate*numberOfItem " + sd.getTotalValue());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (XMLStreamException e) {

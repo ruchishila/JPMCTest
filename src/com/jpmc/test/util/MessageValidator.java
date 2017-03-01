@@ -17,9 +17,8 @@ import org.xml.sax.SAXException;
  *
  */
 public class MessageValidator {
-	
-	public void validateMessage(File schemaFile, File file) throws SAXException, IOException
-	{
+
+	public void validateMessage(File schemaFile, File file) throws SAXException, IOException {
 		Source xmlFile = new StreamSource(file);
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		Schema schema = schemaFactory.newSchema(schemaFile);
