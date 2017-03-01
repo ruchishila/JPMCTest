@@ -24,7 +24,7 @@ public class MessageReader {
 	 */
 	public SaleData xmlReader(String message) {
 		String itemName = null;
-		String itemRate = null;
+		int itemRate = 0;
 		int noItem = 0;
 		String adjustmentType = null;
 		int adjustmentAmount = 0;
@@ -48,7 +48,6 @@ public class MessageReader {
 					String qName = startElement.getName().getLocalPart();
 					if (qName.equalsIgnoreCase("sale")) {
 						Iterator<Attribute> attributes = startElement.getAttributes();
-						System.out.println("Start Element : sale");
 					} else if (qName.equalsIgnoreCase("item-name")) {
 
 						iname = true;
@@ -74,7 +73,7 @@ public class MessageReader {
 
 					if (irate) {
 						Characters characters = event.asCharacters();
-						itemRate = characters.getData();
+						itemRate = Integer.parseInt(characters.getData());
 						sd.setItemRate(itemRate);
 						System.out.println("Rate of the Item : " + itemRate);
 						irate = false;
@@ -111,8 +110,8 @@ public class MessageReader {
 				}
 
 			}
-
-			System.out.println("Item in object " + sd.getItemName());
+            sd.setTotalValue((itemRate)*noItem);
+			System.out.println("Total value of this sale is rate*numberOfItem "+sd.getTotalValue());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (XMLStreamException e) {

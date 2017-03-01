@@ -16,69 +16,84 @@ public class MessageProcessor {
 
 	public SaleData sd = null;
 
-	Map<String, Integer> productName = new HashMap<String, Integer>();
+	Map<String, Integer> productName = null;
+	int adjustment = 0;
 
-	
 	/**
-	 * This method process all the messages and calculates total value of the sales
+	 * This method process all the messages and calculates total value of the
+	 * sales
+	 * 
 	 * @param saleData
 	 */
 	public void processMessages(ArrayList<SaleData> saleData) {
+		
+		productName = new HashMap<String, Integer>();
 
 		Iterator<SaleData> iter = saleData.iterator();
 		while (iter.hasNext()) {
 			SaleData sd = iter.next();
-			int prodrate = Integer.parseInt(sd.getItemRate());
+			int prodrate = sd.getItemRate();
 			String prodname = sd.getItemName();
+			
 
 			if (productName.containsKey(prodname)) {
+
+				int totalProduct = productName.get(prodname) + sd.getNoItem();
+				productName.put(prodname, totalProduct);
+
 				if (!(sd.getAdjustmentType() == null)) {
-					if (sd.getAdjustmentType() == TestConstant.add) {
-						productName.put(prodname,
-								(productName.get(prodname) + (prodrate + sd.getAdjustmentAmount()) * sd.getNoItem()));
+					if ((sd.getAdjustmentType()).equals(TestConstant.add)) {
+						adjustment = prodrate + (sd.getAdjustmentAmount());
+						System.out.println("After adding the adjustment, the rate for " + prodname + " is " + adjustment);
+						System.out.println("Total amount is " + (adjustment * totalProduct));
 					}
-					if (sd.getAdjustmentType() == TestConstant.subtract) {
-						productName.put(prodname,
-								(productName.get(prodname) + (prodrate - sd.getAdjustmentAmount()) * sd.getNoItem()));
+					if ((sd.getAdjustmentType()).equals(TestConstant.subtract)) {
+						adjustment = prodrate - (sd.getAdjustmentAmount());
+						System.out.println("After subtracting adjustment, the rate for " + prodname + " is " + adjustment);
+						System.out.println("Total amount is " + (adjustment * totalProduct));
 					}
-					if (sd.getAdjustmentType() == TestConstant.multiply) {
-						productName.put(prodname,
-								(productName.get(prodname) + (prodrate * sd.getAdjustmentAmount()) * sd.getNoItem()));
+					if ((sd.getAdjustmentType()).equals(TestConstant.multiply)) {
+						adjustment = prodrate * (sd.getAdjustmentAmount());
+						System.out.println("After multiplying adjustment, the rate for " + prodname + " is " + adjustment);
+						System.out.println("Total amount is " + (adjustment * totalProduct));
 					}
-				} else {
-					productName.put(prodname, productName.get(prodname) + (prodrate * sd.getNoItem()));
+
 				}
 
 			} else {
+
+				productName.put(prodname, sd.getNoItem());
+
 				if (!(sd.getAdjustmentType() == null)) {
-					if (sd.getAdjustmentType().equals(TestConstant.add)) {
-						System.out.println("Adding");
-						productName.put(prodname, (sd.getAdjustmentAmount() + prodrate) * sd.getNoItem());
-
+					if ((sd.getAdjustmentType()).equals(TestConstant.add)) {
+						adjustment = prodrate + (sd.getAdjustmentAmount());
+						System.out.println("After adding adjustment, the rate for " + prodname + " is " + adjustment);
+						System.out.println("Total amount is " + (adjustment * sd.getNoItem()));
 					}
-					if (sd.getAdjustmentType().equals(TestConstant.subtract)) {
-						System.out.println("Subtracting");
-						productName.put(prodname, (prodrate - sd.getAdjustmentAmount()) * sd.getNoItem());
-
+					if ((sd.getAdjustmentType()).equals(TestConstant.subtract)) {
+						adjustment = prodrate - (sd.getAdjustmentAmount());
+						System.out.println("After subtracting adjustment, the rate for " + prodname + " is " + adjustment);
+						System.out.println("Total amount is " + (adjustment * sd.getNoItem()));
 					}
-					if (sd.getAdjustmentType().equals(TestConstant.multiply)) {
-						System.out.println("Multiplying");
-						productName.put(prodname, (prodrate * sd.getAdjustmentAmount()) * sd.getNoItem());
-
+					if ((sd.getAdjustmentType()).equals(TestConstant.multiply)) {
+						adjustment = prodrate * (sd.getAdjustmentAmount());
+						System.out.println("After multiplying adjustment, the rate for " + prodname + " is " + adjustment);
+						System.out.println("Total amount is " + (adjustment * sd.getNoItem()));
 					}
-				} else {
-					productName.put(prodname, (prodrate * sd.getNoItem()));
+
 				}
 
 			}
 
+			
 		}
-
+		
 		for (Map.Entry<String, Integer> entry : productName.entrySet()) {
-			System.out.print("Total Cost of " + entry.getKey() + " = " + entry.getValue() + " ");
+			System.out.print("Total number of " + entry.getKey() + " sold = " + entry.getValue() + " ");
 			System.out.println();
+
 		}
 		System.out.println("We sold " + productName.size() + " items.");
-	}
 
+	}
 }

@@ -1,19 +1,18 @@
 package com.jpmc.test.dto;
 
+/**
+ * @author RD
+ * DTO class to hold each sale details
+ *
+ */
 public class SaleData {
 	
-	/*public SaleData(String itemName, String itemRate, int noItem, String adjustmentType, int adjustmentAmount) {
-		this.itemName = itemName;
-		this.itemRate = itemRate;
-		this.noItem = noItem;
-		this.adjustmentType = adjustmentType;
-		this.adjustmentAmount = adjustmentAmount;
-	}*/
 	private String itemName;
-	private String itemRate;
+	private int itemRate;
 	private int noItem;
 	private String adjustmentType;
 	private int adjustmentAmount;
+	private int totalValue;
 	
 	
 	
@@ -23,10 +22,10 @@ public class SaleData {
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
-	public String getItemRate() {
+	public int getItemRate() {
 		return itemRate;
 	}
-	public void setItemRate(String itemRate) {
+	public void setItemRate(int itemRate) {
 		this.itemRate = itemRate;
 	}
 	public int getNoItem() {
@@ -46,6 +45,12 @@ public class SaleData {
 	}
 	public void setAdjustmentAmount(int adjustmentAmount) {
 		this.adjustmentAmount = adjustmentAmount;
+	}
+	public int getTotalValue() {
+		return totalValue;
+	}
+	public void setTotalValue(int totalValue) {
+		this.totalValue = totalValue;
 	}
 	
 
